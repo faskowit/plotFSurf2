@@ -1,8 +1,15 @@
-function [ fig_hand ] = viz(surfStructHemi,wei,viewAngle)
+function [ fig_hand ] = viz(surfStructHemi,wei,viewAngle,cmapStr)
 
 if nargin < 3
     error('need three args')
 end
+
+if ~exist('cmapStr','var') || isempty(cmapStr)
+   cmapStr = 'direct';
+end
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 fig_hand = patch('faces',surfStructHemi.faces,...
                 'vertices',[surfStructHemi.coords(:,1) ...
@@ -20,4 +27,4 @@ camlight headlight
 lighting gouraud
 
 % cmapping
-fig_hand.CDataMapping = 'direct'; 
+fig_hand.CDataMapping = cmapStr; 

@@ -1,8 +1,12 @@
-function [ fig_hand ] = viz_views(surfStruct,LH_wei,RH_wei,plotViewStr)
+function [ fig_hand ] = viz_views(surfStruct,LH_wei,RH_wei,plotViewStr,cmapStr)
 
 if ~exist('plotViewStr','var') || isempty(plotViewStr)
     plotViewStr = 'all'; % weight for unknown vertices
 end 
+
+if ~exist('cmapStr','var') || isempty(cmapStr)
+   cmapStr = 'direct';
+end
 
 if ~ismember(plotViewStr, {'all' 'lh:lat' 'lh:med' 'rh:lat' 'rh:med'})
     error('invalid "plotView" variable')
@@ -26,16 +30,14 @@ if strcmp(plotViewStr,'all')
     subplot(221)
 end
 if strcmp(plotViewStr,'all') || strcmp(plotViewStr,'lh:lat')
-
-    fig_hand = viz(surfStruct.LH,LH_wei,-90) ; 
+    fig_hand = viz(surfStruct.LH,LH_wei,-90,cmapStr) ; 
 end
 
 if strcmp(plotViewStr,'all')
     subplot(223)
 end
 if strcmp(plotViewStr,'all') || strcmp(plotViewStr,'lh:med')
-
-    fig_hand = viz(surfStruct.LH,LH_wei,90) ;     
+    fig_hand = viz(surfStruct.LH,LH_wei,90,cmapStr) ;     
 end
 
 % Right Hemisphere
@@ -43,7 +45,7 @@ if strcmp(plotViewStr,'all')
     subplot(222)
 end
 if strcmp(plotViewStr,'all') || strcmp(plotViewStr,'rh:lat')
-    fig_hand = viz(surfStruct.RH,RH_wei,90) ;     
+    fig_hand = viz(surfStruct.RH,RH_wei,90,cmapStr) ;     
 end
 
 if strcmp(plotViewStr,'all')
@@ -51,5 +53,5 @@ if strcmp(plotViewStr,'all')
 end
 if strcmp(plotViewStr,'all') || strcmp(plotViewStr,'rh:med')
 
-    fig_hand = viz(surfStruct.RH,RH_wei,-90) ;     
+    fig_hand = viz(surfStruct.RH,RH_wei,-90,cmapStr) ;     
 end

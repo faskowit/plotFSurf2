@@ -5,8 +5,7 @@ if nargin < 2
 end
 
 if ~strcmp(hemi,'LH') && ~strcmp(hemi,'RH')
-      disp(hemi) 
-error('hemi must be either LH or RH') 
+    error('hemi must be either LH or RH') 
 end
 
 if ~exist('inStruct','var') || isempty(inStruct)
