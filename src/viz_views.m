@@ -58,5 +58,6 @@ if strcmp(plotViewStr,'all') || strcmp(plotViewStr,'rh:med')
     fig_hand{4} = viz(surfStruct.RH,RH_wei,-90,cmapStr) ;     
 end
 
+% need to set a shape so that the vertical gap is not so small
 set(gcf, 'Units', 'centimeters', 'OuterPosition', [0 0 24 17]);
 
