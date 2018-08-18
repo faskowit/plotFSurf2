@@ -27,31 +27,36 @@ end
 
 % Left Hemisphere
 if strcmp(plotViewStr,'all')
-    subplot(221)
+    % [ha, pos] = tight_subplot(Nh, Nw, gap, marg_h, marg_w)
+    % [gap_h gap_w], [lower upper], [left right]
+    ts = tight_subplot(2,2,[.001 .025],[.001 .001],[.05 .05]) ;
+    axes(ts(1)) ;
+    fig_hand = cell(4,1) ;
 end
 if strcmp(plotViewStr,'all') || strcmp(plotViewStr,'lh:lat')
-    fig_hand = viz(surfStruct.LH,LH_wei,-90,cmapStr) ; 
+    fig_hand{1} = viz(surfStruct.LH,LH_wei,-90,cmapStr) ; 
 end
-
 if strcmp(plotViewStr,'all')
-    subplot(223)
+    axes(ts(3)) ;
 end
 if strcmp(plotViewStr,'all') || strcmp(plotViewStr,'lh:med')
-    fig_hand = viz(surfStruct.LH,LH_wei,90,cmapStr) ;     
+    fig_hand{3} = viz(surfStruct.LH,LH_wei,90,cmapStr) ;     
 end
 
 % Right Hemisphere
 if strcmp(plotViewStr,'all')
-    subplot(222)
+    axes(ts(2)) ;
 end
 if strcmp(plotViewStr,'all') || strcmp(plotViewStr,'rh:lat')
-    fig_hand = viz(surfStruct.RH,RH_wei,90,cmapStr) ;     
+    fig_hand{2} = viz(surfStruct.RH,RH_wei,90,cmapStr) ;     
 end
-
 if strcmp(plotViewStr,'all')
-    subplot(224)
+    axes(ts(4)) ;
 end
 if strcmp(plotViewStr,'all') || strcmp(plotViewStr,'rh:med')
 
-    fig_hand = viz(surfStruct.RH,RH_wei,-90,cmapStr) ;     
+    fig_hand{4} = viz(surfStruct.RH,RH_wei,-90,cmapStr) ;     
 end
+
+set(gcf, 'Units', 'centimeters', 'OuterPosition', [0 0 24 17]);
+
